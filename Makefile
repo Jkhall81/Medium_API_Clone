@@ -2,7 +2,7 @@ build:
 	docker compose -f local.yml up --build -d --remove-orphans
 
 up:
-	docker compose -f local.yml up -docker
+	docker compose -f local.yml up -d
 
 down:
 	docker compose -f local.yml down
@@ -47,10 +47,10 @@ black:
 	docker compose -f local.yml exec api black --exclude=migrations .
 
 isort-check:
-	docker cocmpose -f local.yml exec api isort . --check-only --skip env --skip migrations
+	docker compose -f local.yml exec api isort . --check-only --skip env --skip migrations
 
 isort-diff:
-	docker cocmpose -f local.yml exec api isort . --diff --skip env --skip migrations
+	docker compose -f local.yml exec api isort . --diff --skip env --skip migrations
 
 isort:
-	docker cocmpose -f local.yml exec api isort . --skip env --skip migrations
+	docker compose -f local.yml exec api isort . --skip env --skip migrations
