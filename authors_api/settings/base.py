@@ -199,7 +199,7 @@ REST_AUTH = {
     "USE_JWT": True,
     "JWT_AUTH_COOKIE": "authors-access-token",
     "JWT_AUTH_REFRESH_COOKIE": "authors-refresh-token",
-    "REGISTER_SERIALIZER": "core_apps.users.serialisers.CustomRegisterSerializer",
+    "REGISTER_SERIALIZER": "core_apps.users.serializers.CustomRegisterSerializer",
 }
 
 AUTHENTICATION_BACKENDS = [

@@ -18,3 +18,7 @@ EMAIL_PORT = env('EMAIL_PORT')
 DEFAULT_FROM_EMAIL = 'support@apiimperfect.site'
 DOMAIN = env('DOMAIN')
 SITE_NAME='Medium Clone'
+
+SWAGGER_SETTINGS = {
+    'DEFAULT_API_URL': None,
+}
