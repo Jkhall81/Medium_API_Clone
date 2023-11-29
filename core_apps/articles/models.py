@@ -10,6 +10,18 @@ from .read_time_engine import ArticleReadTimeEngine
 User = get_user_model()
 
 
+class Clap(TimeStampedModel):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    article = models.ForeignKey("Article", on_delete=models.CASCADE)
+    
+    class Meta:
+        unique_together = ['user', 'article']
+        ordering = ['-created_at']
+        
+    def __str__(self):
+        return f"{self.user.first_name} clapped {self.article.title}"
+
+
 class Article(TimeStampedModel):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='articles')
     title = models.CharField(verbose_name=_('Title'), max_length=255)
