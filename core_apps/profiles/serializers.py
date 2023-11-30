@@ -13,7 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Profile
-        fields = ['id' 'first_name', 'last_name', 'full_name', 'email', 'profile_photo', 'phone_number', 'gender', 'country', 'city', 'twitter_handle', 'about_me']
+        fields = ['id', 'first_name', 'last_name', 'full_name', 'email', 'profile_photo', 'phone_number', 'gender', 'country', 'city', 'twitter_handle', 'about_me']
         
     def get_full_name(self, obj):
         first_name = obj.user.first_name.title()

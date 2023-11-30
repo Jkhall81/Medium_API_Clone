@@ -20,5 +20,5 @@ DOMAIN = env('DOMAIN')
 SITE_NAME='Medium Clone'
 
 SWAGGER_SETTINGS = {
-    'DEFAULT_API_URL': None,
+
 }
