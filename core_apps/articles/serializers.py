@@ -3,6 +3,7 @@ from core_apps.articles.models import Article, ArticleView, Clap
 from core_apps.profiles.serializers import ProfileSerializer
 from core_apps.bookmarks.models import Bookmark
 from core_apps.bookmarks.serializers import BookmarkSerializer
+from core_apps.responses.serializers import ResponseSerializer
 
 
 class TagListField(serializers.Field):
@@ -33,9 +34,14 @@ class ArticleSerializer(serializers.ModelSerializer):
     bookmarks = serializers.SerializerMethodField()
     bookmarks_count = serializers.SerializerMethodField()
     claps_count = serializers.SerializerMethodField()
+    responses = ResponseSerializer(many=True, read_only=True)
+    responses_count = serializers.IntegerField(source='responses.count', read_only=True)
     created_at = serializers.SerializerMethodField()
     updated_at = serializers.SerializerMethodField()
     
+    def get_response_count(self, obj):
+        return obj.responses.count()
+
     def get_claps_count(self, obj):
         return obj.claps.count()
 
@@ -62,7 +68,7 @@ class ArticleSerializer(serializers.ModelSerializer):
     
     def get_updated_at(self, obj):
         then = obj.updated_at
-        formatted_date = now.strftime("%m/%d/%Y, %H:%M:%S")
+        formatted_date = then.strftime("%m/%d/%Y, %H:%M:%S")
         return formatted_date
 
     def create(self, validated_data):
@@ -87,7 +93,25 @@ class ArticleSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Article
-        fields = ['id', 'title', 'slug', 'tags', 'estimated_reading_time', 'author_info', 'views', 'description', 'body', 'banner_image', 'average_rating', 'bookmarks_count', 'claps_count', 'bookmarks', 'created_at', 'updated_at',]
+        fields = ['id',
+                  'title',
+                  'slug',
+                  'tags',
+                  'estimated_reading_time',
+                  'author_info',
+                  'views',
+                  'description',
+                  'body',
+                  'banner_image',
+                  'average_rating',
+                  'bookmarks_count',
+                  'claps_count',
+                  'bookmarks',
+                  'responses',
+                  'responses_count',
+                  'created_at',
+                  'updated_at',
+                  ]
 
 
 class ClapSerializer(serializers.ModelSerializer):
