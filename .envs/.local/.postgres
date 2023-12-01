@@ -3,3 +3,4 @@ POSTGRES_PORT=5432
 POSTGRES_DB=medium
 POSTGRES_USER=admin
 POSTGRES_PASSWORD=Password123
+DATABASE_URL=postgress://admin:Password123@Postgres:5432/medium
