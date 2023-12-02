@@ -57,3 +57,9 @@ isort:
 
 cov-report:
 	docker compose -f local.yml run --rm api pytest -p no:warnings --cov=. --cov-report xml
+
+test-cov:
+	docker compose -f local.yml run --rm api pytest -p no:warnings -v --cov=.
+
+test:
+	docker compose -f local.yml run --rm api pytest
