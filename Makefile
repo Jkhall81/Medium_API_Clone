@@ -54,3 +54,6 @@ isort-diff:
 
 isort:
 	docker compose -f local.yml exec api isort . --skip env --skip migrations
+
+cov-report:
+	docker compose -f local.yml run --rm api pytest -p no:warnings --cov=. --cov-report xml
