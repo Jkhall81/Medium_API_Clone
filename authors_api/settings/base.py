@@ -1,5 +1,6 @@
-from pathlib import Path
 from datetime import timedelta
+from pathlib import Path
+
 import environ
 
 env = environ.Env()
@@ -30,33 +31,33 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'rest_framework',
-    'django_filters',
-    'django_countries',
-    'phonenumber_field',
-    'drf_yasg',
-    'corsheaders',
-    'djcelery_email',
-    'rest_framework.authtoken',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
-    'taggit',
-    'django_elasticsearch_dsl',
-    'django_elasticsearch_dsl_drf',
+    "rest_framework",
+    "django_filters",
+    "django_countries",
+    "phonenumber_field",
+    "drf_yasg",
+    "corsheaders",
+    "djcelery_email",
+    "rest_framework.authtoken",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+    "taggit",
+    "django_elasticsearch_dsl",
+    "django_elasticsearch_dsl_drf",
 ]
 
 LOCAL_APPS = [
-    'core_apps.profiles',
-    'core_apps.common',
-    'core_apps.users',
-    'core_apps.articles',
-    'core_apps.ratings',
-    'core_apps.bookmarks',
-    'core_apps.responses',
-    'core_apps.search',
+    "core_apps.profiles",
+    "core_apps.common",
+    "core_apps.users",
+    "core_apps.articles",
+    "core_apps.ratings",
+    "core_apps.bookmarks",
+    "core_apps.responses",
+    "core_apps.search",
 ]
 
 # Organized like a boss
@@ -64,7 +65,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -104,9 +105,7 @@ WSGI_APPLICATION = "authors_api.wsgi.application"
 #     }
 # }
 
-DATABASES = {
-    "default": env.db('DATABASE_URL')
-}
+DATABASES = {"default": env.db("DATABASE_URL")}
 
 PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.PBKDF2PasswordHasher",
@@ -149,7 +148,7 @@ USE_TZ = True
 
 SITE_ID = 1
 
-ADMIN_URL = 'supersecret/'
+ADMIN_URL = "supersecret/"
 
 
 # Static files (CSS, JavaScript, Images)
@@ -170,11 +169,11 @@ CORS_URLS_REGEX = r"^api/.*$"
 
 AUTH_USER_MODEL = "users.User"
 
-CELERY_BROKER_URL = env('CELERY_BROKER')
+CELERY_BROKER_URL = env("CELERY_BROKER")
 CELERY_RESULT_BACKEND = CELERY_BROKER_URL
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
 CELERY_RESULT_BACKEND_MAX_RETRIES = 10
 CELERY_TASK_SEND_SENT_EVENT = True
 
@@ -185,7 +184,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
+    "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
     "DEFAULT_FILTER_BACKENDS": [
@@ -200,7 +199,7 @@ SIMPLE_JWT = {
     "ROTATE_REFRESH_TOKENS": True,
     "SIGNING_KEY": env("SIGNING_KEY"),
     "USER_ID_FIELD": "id",
-    "USER_ID_CLAIM": 'user_id'
+    "USER_ID_CLAIM": "user_id",
 }
 
 REST_AUTH = {
@@ -232,18 +231,18 @@ ELASTICSEARCH_DSL = {
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(name)-12s %(asctime)s %(module)s '
-            '%(process)d %(thread)d %(message)s'
+    "formatters": {
+        "verbose": {
+            "format": "%(levelname)s %(name)-12s %(asctime)s %(module)s "
+            "%(process)d %(thread)d %(message)s"
         }
     },
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose',
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
         }
     },
-    'root': {'level': 'INFO', 'handlers': ['console']},
+    "root": {"level": "INFO", "handlers": ["console"]},
 }
